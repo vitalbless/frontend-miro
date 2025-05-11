@@ -23,3 +23,10 @@ schemas:
         type: string
       code:
         type: string
+
+BadRequestError:
+  description: Bad request
+  content:
+    application/json:
+      schema:
+        $ref: "#/schemas/Error"

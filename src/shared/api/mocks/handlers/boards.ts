@@ -1,6 +1,7 @@
 import { HttpResponse } from "msw";
 import { http } from "../http";
 import type { ApiSchemas } from "../../schema";
+import { authHandlers } from "./auth";
 
 const boards: ApiSchemas["Board"][] = [
   {
@@ -13,7 +14,7 @@ const boards: ApiSchemas["Board"][] = [
   },
 ];
 
-export const handlers = [
+export const boardsHandlers = [
   http.get("/boards", () => {
     return HttpResponse.json(boards);
   }),
@@ -38,4 +39,5 @@ export const handlers = [
     boards.splice(index, 1);
     return new HttpResponse({ message: "Board deleted", code: "OK" });
   }),
+  ...authHandlers,
 ];
